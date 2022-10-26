@@ -1,0 +1,25 @@
+1 WHAT: XSS là gì?
+- Lỗi phổ biến
+- Hacker chèn mã độc thông qua các đoạn script để thực thi phía client
+- Dùng mạo danh người dùng
+2 HOW: XSS hoạt động như thế nào?
+- Điều khiển trang web dễ bị tấn công để trả về JavaScipt độc hại cho người dùng.
+- Khi mã độc thực thi bên trong trình duyệt của người dùng, hacker có thể xâm nhập vào tài khoản và sử dụng dữ liệu của người dùng
+- Nói đơn giản: thực thi được lệnh alert(1) ở phía người dùng
+- Chrome From version 92 onward (July 20th, 2021) đã chặn dùng lệnh alert()
+- Có thể dùng lệnh print() thay alert()
+3 Các loại XSS:
+- Reflected XSS: Mã độc đến từ HTTP request hiện tại
+- Stored XSS: Mã độc đến từ database
+- DOM-based XSS: Mã độc đến từ client chứ không phải đến từ server
+4 Reflected XSS:
+- Người dùng đã đăng nhập vào trang web có XSS
+- Hacker tạo ra 1 URL đã chèn mã độc cho người dùng
+- Người dùng click vào URL, mã độc được thực thì, có thể truy cập vào dữ liệu người dùng
+- Ví dụ:
+  + URL bình thường: 
+    https://insecure-website.com/status?message=All+is+well.
+    <p>Status: All is well.</p>
+  + URL đã chèn mã độc:
+    https://insecure-website.com/status?message=<script>/*+Bad+stuff+here...+*/</script>
+    <p>Status: <script>/* Bad stuff here... */</script></p>
