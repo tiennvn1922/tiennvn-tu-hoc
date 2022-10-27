@@ -23,3 +23,26 @@
   + URL đã chèn mã độc:
     https://insecure-website.com/status?message=<script>/*+Bad+stuff+here...+*/</script>
     <p>Status: <script>/* Bad stuff here... */</script></p>
+5 Stored cross-site scripting
+- Hướng đến nhiều người hơn
+- Hacker chèn mã độc và CSDL thông qua các comment, form góp ý,... Khi người dùng truy cập web và thực hiện thao tác liên quan đến dữ liệu được lưu này, mã độc sẽ được thực thi trên trình duyệt của người dùng
+- So sánh:
+  + Reflected XSS: Hacker phải lừa được nạn nhân truy cập vào URL của mình. Hacker phải lừa nạn nhân đăng nhập vào trang web trước rồi mới truy cập vào URL.
+  + Stored XSS: Hacker chỉ cần chèn mã độc vào CSDL và ngồi chờ nạn nhân truy cập vào chức năng liên quan đến CSDL có mã độc. Nhiều khả năng nạn nhân đã đăng nhập trước đó và lúc truy cập vào chức năng được chèn mã độc, nạn nhân vẫn đang trong phiên làm việc.
+- Ví dụ:
+  + <p>Hello, this is my message!</p>
+  + <p><script>/* Bad stuff here... */</script></p>
+6 DOM-based cross-site scripting
+- Script sẽ được thực thi ở phía client, làm thay đổi cấu trúc của DOM
+- Phải lừa người dùng click vào URL đã được chèn mã độc
+- Ví dụ:
+  + message=Please fill in the form
+  + message=<label>Gender</label><div class="col-sm-4"><select class = "form-control" onchange="java_script_:show()"><option value="Male">Male</option><option value="Female">Female</option></select></div><script>function show(){alert();}</script>
+7 WHY: XSS làm được gì
+- Mạo danh người dùng
+- Lấy thông tin đăng nhập của người dùng
+8 Cách ngăn chặn XSS
+- Filter input
+- Mã hóa dữ liệu đầu ra
+- Nếu response không bao gồm HTML hoặc JavaScipt, hãy thêm vào header Content-Type, X-Content-Type-Options để chắc rẳng trình duyệt thực thi như mình mong đợi
+- Dùng Content Security Policy (CSP)

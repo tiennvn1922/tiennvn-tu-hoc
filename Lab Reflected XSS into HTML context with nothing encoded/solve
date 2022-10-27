@@ -1,0 +1,10 @@
+This lab contains a simple reflected cross-site scripting vulnerability in the search functionality.
+
+To solve the lab, perform a cross-site scripting attack that calls the alert function.
+
+Web có chức năng search, thử nhập a, web trả về ?search=a, thử nhập a<h2>b</h2>, web trả về ?search=a%3Ch2%3Eb%3C%2Fh2%3E. Rõ ràng web sẽ trả về bất cứ thứ gì ta nhập vào input => XSS.
+Payload: <script>alet(1)</script>
+
+https://0a48000e0442f51dc08e045400a200ee.web-security-academy.net/?search=%3Cscript%3Ealert%281%29%3C%2Fscript%3E
+
+Hacker sẽ tìm cách dụ người dùng đã đăng nhập click vào url trêns

