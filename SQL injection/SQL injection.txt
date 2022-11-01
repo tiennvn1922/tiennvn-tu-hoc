@@ -1,0 +1,2 @@
+1. WHAT
+- Lỗ hổng mà hacker có thể can thiệp vào câu truy vấn vào CSDL

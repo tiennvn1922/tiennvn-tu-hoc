@@ -1,0 +1,9 @@
+This lab demonstrates a stored DOM vulnerability in the blog comment functionality. To solve this lab, exploit this vulnerability to call the alert() function.
+
+If you replace a value, only the first instance will be replaced. To replace all instances, use a regular expression with the g modifier set.
+
+function escapeHTML(html) {
+    return html.replace("<", "&lt;").replace(">", "&gt;");
+}
+
+Web dùng hàm replace để encode dấu < và dấu > nhưng hàm replace chỉ thay thế kết quả đẩu tiên nó tìm thấy vì thế payload là: <><img src=1 onerror=alert(1)>

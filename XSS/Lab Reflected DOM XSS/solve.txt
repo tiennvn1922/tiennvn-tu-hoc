@@ -1,0 +1,15 @@
+This lab demonstrates a reflected DOM vulnerability. Reflected DOM vulnerabilities occur when the server-side application processes data from a request and echoes the data in the response. A script on the page then processes the reflected data in an unsafe way, ultimately writing it to a dangerous sink.
+
+To solve this lab, create an injection that calls the alert() function.
+
+Do NOT use eval()
+Executing JavaScript from a string is an BIG security risk.
+
+With eval(), malicious code can run inside your application without permission.
+
+With eval(), third-party code can see the scope of your application, which can lead to possible attacks.
+
+payload: \"-alert(1)}//
+
+https://0aa8002303407d76c06451db00c200a0.web-security-academy.net/?search=\%22-alert(1)}//
+
