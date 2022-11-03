@@ -1,0 +1,1 @@
+SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE 'a' END FROM dual = 'a'--
